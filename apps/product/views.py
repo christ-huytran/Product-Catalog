@@ -33,3 +33,8 @@ def update(request, product_id):
 	product.manufacturer = Manufacturer.objects.get(id = request.POST['manufacturer'])
 	product.save()
 	return redirect('index')
+
+def destroy(request, product_id):
+	product = Product.objects.get(id = product_id)
+	product.delete()
+	return redirect('index')

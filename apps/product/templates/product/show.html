@@ -70,5 +70,15 @@
 			</div>
 		</div>
 	</form>
+
+
+	<form action="{% url 'delete' product.id %}" method='post'>
+		{% csrf_token %}
+		<div class="row">
+			<div class="large-12 columns">
+				<input class="button alert small small-2" type="submit" value="Delete product" />
+			</div>
+		</div>
+	</form>
 </body>
 </html>
