@@ -14,6 +14,7 @@ class Product(models.Model):
 	product_name = models.CharField(max_length=200)
 	price = models.FloatField()
 	manufacturer = models.ForeignKey(Manufacturer)
+	description = models.TextField(null=True)
 	date_added = models.DateField(auto_now_add=True)
 	class Meta:
 		db_table = 'products'
