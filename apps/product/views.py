@@ -15,6 +15,6 @@ def show(request, product_id):
 
 def create(request):
 	manufacturer = Manufacturer.objects.get(id = request.POST['manufacturer'])
-	new_product = Product(manufacturer = manufacturer, product_name = request.POST['product_name'], price = request.POST['price'])
+	new_product = Product(manufacturer = manufacturer, product_name = request.POST['product_name'], price = request.POST['price'], description = request.POST['description'])
 	new_product.save()
 	return redirect('index')
