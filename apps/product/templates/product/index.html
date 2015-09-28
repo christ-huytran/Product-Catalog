@@ -1,8 +1,84 @@
 <html>
 <head>
 	<title>Products</title>
+	<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.foundation5.zurb.com/foundation.js"></script>
 </head>
 <body>
-	<h3>Chris Store</h3>
+	<nav class="top-bar" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+			<h1><a href="/products">Chris Store</a></h1>
+			</li>
+			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
+
+		<section class="top-bar-section">
+			<!-- Right Nav Section -->
+			<ul class="right">
+			</ul>
+		</section>
+	</nav>
+	<div class='row'>
+		<div class='small-9 small-offset-1 columns'>
+			<h3>Product Listing:</h3>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Manufacturer</th>
+						<th>Product Name</th>
+						<th>Price</th>
+						<th>Date Added</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in products %}
+					<tr>
+						<td>{{ product.manufacturer }}</td>
+						<td>{{ product.product_name }}</td>
+						<td>${{ product.price }}</td>
+						<td>{{ product.date_added }}</td>
+						<td></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+	<form>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Input Label
+				<input type="text" placeholder="large-12.columns" />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Select Box
+					<select>
+						<option value="husker">Husker</option>
+						<option value="starbuck">Starbuck</option>
+						<option value="hotdog">Hot Dog</option>
+						<option value="apollo">Apollo</option>
+					</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Textarea Label
+				<textarea placeholder="small-12.columns"></textarea>
+				</label>
+			</div>
+		</div>
+	</form>
 </body>
 </html>
