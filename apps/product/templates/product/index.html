@@ -42,7 +42,7 @@
 						<td>{{ product.product_name }}</td>
 						<td>${{ product.price }}</td>
 						<td>{{ product.date_added }}</td>
-						<td></td>
+						<td><a href="{% url 'show' product.id %}">Edit</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -52,31 +52,43 @@
 
 
 
-	<form>
+	<form action="{% url 'create' %}" method='post'>
+		{% csrf_token %}
 		<div class="row">
 			<div class="large-12 columns">
-				<label>Input Label
-				<input type="text" placeholder="large-12.columns" />
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-12 columns">
-				<label>Select Box
-					<select>
-						<option value="husker">Husker</option>
-						<option value="starbuck">Starbuck</option>
-						<option value="hotdog">Hot Dog</option>
-						<option value="apollo">Apollo</option>
+				<label>Manufacturer/Brand
+					<select name='manufacturer'>
+						{% for m in manufacturers %}
+						<option value="{{ m.id }}">{{ m.manufacturer_name }}</option>
+						{% endfor %}
 					</select>
 				</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
-				<label>Textarea Label
-				<textarea placeholder="small-12.columns"></textarea>
+				<label>Product Name
+				<input type="text" name='product_name' />
 				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Price
+				<input type="text" name='price' />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Textarea Label
+				<textarea></textarea>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<input class="button small small-2" type="submit" value="Add product" />
 			</div>
 		</div>
 	</form>
