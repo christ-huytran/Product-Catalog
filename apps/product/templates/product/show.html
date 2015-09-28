@@ -18,20 +18,57 @@
 		<section class="top-bar-section">
 			<!-- Right Nav Section -->
 			<ul class="right">
-				<li class="active"><a href="#">Right Button Active</a></li>
-				<li class="has-dropdown">
-					<a href="#">Right Button Dropdown</a>
-					<ul class="dropdown">
-						<li><a href="#">First link in dropdown</a></li>
-						<li class="active"><a href="#">Active link in dropdown</a></li>
-					</ul>
-				</li>
-			</ul>
-			<!-- Left Nav Section -->
-			<ul class="left">
-				<li><a href="#">Left Nav Button</a></li>
 			</ul>
 		</section>
 	</nav>
+	<div class='row'>
+		<div class='small-9 small-offset-1 columns'>
+			<h3>{{ product.product_name }}</h3>
+		</div>
+	</div>
+
+	<form action="{% url 'update' product.id %}" method='post'>
+		{% csrf_token %}
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Manufacturer/Brand
+					<select name='manufacturer'>
+						<option selected="{{ product.manufacturer.id }}" value="{{ product.manufacturer.id }}">{{ product.manufacturer }}</option>
+						{% for m in manufacturers %}
+						{% if m != product.manufacturer %}
+						<option value="{{ m.id }}">{{ m.manufacturer_name }}</option>
+						{% endif %}
+						{% endfor %}
+					</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Product Name
+				<input type="text" name='product_name' value='{{ product.product_name }}' />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Price
+				<input type="text" name='price' value='{{ product.price }}' />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Description
+				<textarea name='description'>{{ product.description }}</textarea>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<input class="button small small-2" type="submit" value="Update product" />
+			</div>
+		</div>
+	</form>
 </body>
 </html>
